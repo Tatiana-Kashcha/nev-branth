@@ -1,6 +1,6 @@
-import { supportArr } from "./support-arr";
+import { supportArr } from './support-arr';
 
-const supportItemsEl = document.querySelector(".support-list");
+const supportItemsEl = document.querySelector('.support-list');
 
 const makeSupporItems = supportArr
   .map(
@@ -17,12 +17,12 @@ const makeSupporItems = supportArr
   </a>
 </li>`
   )
-  .join("");
+  .join('');
 
-supportItemsEl.insertAdjacentHTML("beforeend", makeSupporItems);
+supportItemsEl.insertAdjacentHTML('beforeend', makeSupporItems);
 
 function addLeadingZero(value) {
-  return value.toString().padStart(2, "0");
+  return value.toString().padStart(2, '0');
 }
 
 // <button class="btn-user-in" type="button">
