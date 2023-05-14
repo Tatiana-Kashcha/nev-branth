@@ -1,10 +1,13 @@
 import { supportArr } from './support-arr';
 
 const supportItemsEl = document.querySelector('.support-list');
-const makeSupporItems = itemsEl => {
-  const { title, url, img } = itemsEl;
-  return `<li class="support-item">
+
+const makeSupporItems = supportArr
+  .map(
+    ({ title, url, img }, idx) =>
+      `<li class="support-item">
   <a class="support-link" href=${url}>
+    <span class="support-number">${addLeadingZero(idx + 1)}</span>
     <img
       class="support-image"
       src=${img}
@@ -12,10 +15,15 @@ const makeSupporItems = itemsEl => {
       alt=${title}
     />
   </a>
-</li>`;
-};
-const itemsImages = supportArr.map(makeSupporItems).join('');
-supportItemsEl.insertAdjacentHTML('beforeend', itemsImages);
+</li>`
+  )
+  .join('');
+
+supportItemsEl.insertAdjacentHTML('beforeend', makeSupporItems);
+
+function addLeadingZero(value) {
+  return value.toString().padStart(2, '0');
+}
 
 // <button class="btn-user-in" type="button">
 //   <span class="btn-icn-wrap">
