@@ -1,17 +1,22 @@
 import { supportArr } from './support-arr';
+// import Swiper from 'swiper';
+import Swiper, { Navigation } from 'swiper';
+
+// import 'swiper/swiper.min.css';
+import 'swiper/modules/navigation/navigation.min.css';
 
 const supportItemsEl = document.querySelector('.support-list');
 
 const makeSupporItems = supportArr
   .map(
     ({ title, url, img }, idx) =>
-      `<li class="support-item">
-  <a class="support-link" href=${url}>
+      `<li class="support-item swiper-slide">
+  <a class="support-link" href=${url} target="_blank" rel="nofollow noopener noreferrer">
     <span class="support-number">${addLeadingZero(idx + 1)}</span>
     <img
       class="support-image"
-      srcset=${img}
-      src=${img}
+      srcset="${img.normal} 1x, ${img.retina} 2x"
+      src=${img.normal}
       alt=${title}
     />
   </a>
@@ -25,19 +30,29 @@ function addLeadingZero(value) {
   return value.toString().padStart(2, '0');
 }
 
-// <button class="btn-user-in" type="button">
-//   <span class="btn-icn-wrap">
-//     <img
-//       srcset="./images/user-@1x.png 1x, ./images/user-@2x.png 2x"
-//       src="./images/user-@1x.png"
-//       alt="user avatar"
-//       loading="lazy"
-//     />
-//   </span>
-//   Stephen
-//   <span class="btn-icn-wrap">
-//     <svg width="23" height="26">
-//       <use href="./images/icons.svg#caret-down"></use>
-//     </svg>
-//   </span>
-// </button>;
+// const swiper = new Swiper('.mySwiper', {
+//   loop: true,
+//   navigation: {
+//     nextEl: '.swiper-btn-next',
+//     // prevEl: '.swiper-btn-next',
+//   },
+// });
+
+const swiper = new Swiper('.swiper', {
+  direction: 'vertical',
+  loop: true,
+  slidesPerView: 6,
+  rewind: true,
+  spaceBetween: 20,
+  effect: 'slide',
+  breakpoints: {
+    480: {
+      slidesPerView: 4,
+    },
+  },
+  modules: [Navigation],
+  navigation: {
+    // nextEl: '.swiper-btn-next',
+    prevEl: '.swiper-btn-next',
+  },
+});
