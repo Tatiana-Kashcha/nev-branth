@@ -138,3 +138,9 @@
   filter: invert(1%) sepia(1%) saturate(1%) hue-rotate(1deg) brightness(1000%)
     contrast(80%); //темна тема
 }
+
+// стилі для картинок магазинів в _shopping-list.scss
+
+.amazon-color {
+  filter: $amazon-color;
+}
